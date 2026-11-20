@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DOST New Hire Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pri:#2557a7;--lt:#4bb0d8;--bg:#eef1f7;--tx:#1c2f57;--bd:#d6deee;--ok:#1a9e5c;--bad:#d64550;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45;padding:env(safe-area-inset-top,0px) 0 calc(96px + env(safe-area-inset-bottom,0px))}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--bd);padding:10px 14px;z-index:5;padding-top:calc(10px + env(safe-area-inset-top,0px))}
+.brand{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--pri);font-size:14px}
+.qrb{border:1.5px solid var(--pri);background:none;color:var(--pri);border-radius:20px;padding:3px 12px;font:600 12px Poppins,sans-serif;cursor:pointer}
+.steps{display:flex;gap:6px;margin-top:8px}
+.st{flex:1;text-align:center;font-size:10px;color:#8a97b5;font-weight:600}
+.st i{display:block;height:6px;border-radius:3px;background:var(--bd);margin-bottom:4px}
+.st.on{color:var(--pri)}.st.on i{background:var(--pri)}.st.done i{background:var(--lt)}
+main{max-width:640px;margin:0 auto;padding:14px}
+.card{position:relative;background:#fff;border-radius:18px;padding:22px 18px;margin-bottom:14px;box-shadow:0 6px 24px rgba(37,87,167,.1)}
+.card:after{content:"";position:absolute;top:18px;right:16px;width:22px;height:34px;background:radial-gradient(circle,var(--pri) 2.5px,transparent 3px) 0 0/11px 11px}
+h1,h2{font-weight:800;color:var(--pri);margin:0 0 10px;letter-spacing:-.3px;padding-right:30px}
+h1{font-size:26px}h2{font-size:19px;line-height:1.25;padding-bottom:10px;border-bottom:1.5px solid var(--pri)}
+p{margin:6px 0}.sub{color:var(--lt);font-weight:400;font-size:14px}
+.ck{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+.ck>b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--pri);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px}
+button.b{width:100%;padding:13px;border:0;border-radius:14px;background:var(--pri);color:#fff;font:600 15px Poppins,sans-serif;margin-top:12px;cursor:pointer}
+button.b.g{background:#fff;color:var(--pri);border:1.5px solid var(--pri)}button.b:disabled{opacity:.4}
+input[type=text]{width:100%;padding:12px;border:1.5px solid var(--bd);border-radius:12px;font:400 15px Poppins,sans-serif;margin-top:6px;color:var(--tx)}
+.opt{display:block;width:100%;text-align:left;padding:12px;margin-top:8px;border:1.5px solid var(--bd);border-radius:12px;background:#fff;color:var(--tx);font:400 14px Poppins,sans-serif;cursor:pointer}
+.opt:hover{border-color:var(--pri)}
+.tag{display:inline-block;background:var(--pri);color:#fff;border-radius:20px;padding:3px 12px;font-size:12px;font-weight:600;margin-bottom:10px}
+.big{font-size:44px;font-weight:800;text-align:center;color:var(--pri)}
+.res{padding:12px;border-radius:12px;background:#f3f8fd;border-left:4px solid var(--lt);margin-top:10px;font-size:14px}
+.res.good{border-color:var(--ok)}.res.bad{border-color:var(--bad)}
+/* matching */
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.mg h3{font-size:13px;margin:0 0 6px;color:var(--pri)}
+.pc,.sl{display:flex;gap:8px;align-items:center;padding:8px;border:1.5px solid var(--bd);border-radius:12px;margin-bottom:8px;background:#fff;font-size:11px;min-height:64px}
+.pc{cursor:grab}.pc.sel{border-color:var(--pri);background:#eaf1fb}.pc b,.sl b{display:block;font-size:12.5px;color:var(--pri)}.pc span{color:#5f7096}
+.sl{border-style:dashed;flex-wrap:wrap}.sl.ok{border:2px solid var(--ok)}.sl.no{border:2px solid var(--bad)}
+.av{flex:none;width:40px;height:40px;border-radius:50%;overflow:hidden}.av svg{width:100%;height:100%;display:block}
+/* calendar */
+.top{display:flex;justify-content:space-between;align-items:center;background:var(--pri);color:#fff;border-radius:14px;padding:10px 16px;margin:12px 0;font-weight:700}
+.top span{font-size:26px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.dh{text-align:center;font-size:11px;font-weight:700;color:var(--lt)}
+.dc{aspect-ratio:1;border:1.5px solid var(--bd);border-radius:10px;background:#fff;font:600 11px Poppins,sans-serif;color:var(--tx);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.dc em{font-style:normal;font-size:17px;line-height:1}.dc.on{background:var(--pri);color:#fff;border-color:var(--pri)}.dc.off{background:#f1f3f8;color:#aab3c8;cursor:default}
+#info{min-height:48px;margin-top:10px}
+.shake{animation:sh .3s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+/* challenges */
+.chl{display:flex;gap:10px;align-items:center;padding:11px;border:1.5px solid var(--bd);border-radius:12px;margin-top:8px;cursor:pointer;font-size:14px}
+.chl.on{border-color:var(--ok);background:#effaf4}.chl input{width:20px;height:20px;accent-color:var(--pri)}.chl em{margin-left:auto;font-style:normal;font-weight:700;color:var(--pri);white-space:nowrap}
+.lb{display:flex;gap:10px;align-items:center;padding:10px;border-radius:12px;margin-top:8px;border:1.5px solid var(--bd);font-size:13px}
+.lb.me{background:#eaf1fb;border-color:var(--pri)}.lb .rk{font-weight:800;color:var(--pri);width:26px;font-size:16px}.lb small{display:block;color:var(--lt);font-weight:600}.lb .pt{margin-left:auto;font-weight:800;color:var(--pri)}
+.ft{position:fixed;left:0;right:0;bottom:0;z-index:4;padding:0 14px calc(10px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.ft div{max-width:640px;margin:0 auto;background:var(--pri);color:#fff;border-radius:22px 22px 14px 14px;padding:10px 18px;font-size:12px}.ft b{display:block;font-size:13px}
+#qm{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:20}
+#qm .card{text-align:center;margin:16px}#qc{display:inline-block;background:#fff;padding:12px}
+</style></head><body>
+<header><div class="brand"><span>🔬 DOST · New Hire Journey</span><button class="qrb" onclick="showQR()">QR code</button></div><div class="steps" id="steps"></div></header>
+<main id="app"></main>
+<div class="ft"><div><b id="f1"></b><span id="f2"></span></div></div>
+<div id="qm" onclick="this.style.display='none'"><div class="card"><h2>Scan to join</h2><div id="qc"></div><p class="sub">Tap anywhere to close</p></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const S={name:"",step:0,role:"",match:0,left:4,days:[],pts:0};
+const NM=["Talent Acquisition","PMS","Total Rewards","Engagement"];
+const FT=[["DOST New Hire Journey","Welcome aboard!"],["Strategic Organization Design & Talent Acquisition","CS1. Merit and Fitness Talent Acquisition"],["Performance Management System","Competency Identification and Profiling"],["Total Rewards Systems","Wellness and Leave Credit Tracker"],["Strategic Employee Engagement","DO Wellness Challenges"],["Congratulations!","Journey complete"]];
+const app=document.getElementById("app"),$=id=>document.getElementById(id);
+const AV='<div class="av"><svg viewBox="0 0 40 40"><rect width="40" height="40" fill="#c9ccd3"/><ellipse cx="20" cy="15" rx="7" ry="8.5" fill="#fff"/><path d="M5 40c0-11 6-15 15-15s15 4 15 15z" fill="#fff"/></svg></div>';
+function go(f,s){if(s!==undefined)S.step=s;$("steps").innerHTML=NM.map((n,i)=>`<div class="st ${S.step===i+1?"on":""} ${S.step>i+1?"done":""}"><i></i>${i+1}. ${n}</div>`).join("");const t=FT[Math.min(S.step,5)];$("f1").textContent=t[0];$("f2").textContent=t[1];f();window.scrollTo(0,0)}
+function hold(label,fn,step){app.innerHTML=`<div class="card" style="text-align:center"><div class="big">⏸️</div><h1 style="padding:0">Please hold on!</h1><p class="sub" style="font-size:16px">Please do not click “Next” until the presenters instruct you to do so.</p><button class="b" onclick="go(${fn},${step})">${label}</button></div>`}
+function welcome(){app.innerHTML=`<div class="card"><h1>Welcome to the DOST HR Portal! 🇵🇭</h1><p class="sub">Go through 4 stops as a brand-new hire: talent acquisition, performance management, total rewards, and engagement.</p><p>What should we call you (Nickname)?</p><input type="text" id="nm" maxlength="20" placeholder="e.g. Migs"><button class="b" onclick="start()">Start my journey</button></div>`}
+function start(){const v=$("nm").value.trim();if(!v){$("nm").focus();return}S.name=v;go(s1,1)}
+/* STEP 1 */
+const Q=[["🧮 Math","A team records rainfall: 12 mm, 18 mm, 15 mm and 15 mm. What is the average?",["12 mm","15 mm","18 mm"],1],["🔬 Science","Which tool would you use to measure the acidity of a water sample?",["pH meter","Thermometer","Barometer"],0],["🧩 Logic","All DOST scientists publish research. Ana is a DOST scientist. Which MUST be true?",["Ana is a lab technician","Ana works alone","Ana publishes research"],2]];
+let qa=[];
+function s1(){qa=[];app.innerHTML=`<div class="card"><span class="tag">Step 1 · Talent Acquisition</span><h2>hi ${S.name}, you’re interested in becoming a new hire!</h2><div class="ck"><b>✓</b><div>Answer 3 quick questions on <b>math, science and logic</b>.</div></div><div class="ck"><b>✓</b><div>We’ll match you with the DOST role that suits you best.</div></div><button class="b" onclick="q(0)">Start the assessment</button></div>`}
+function q(i){if(i>2)return r1();const x=Q[i];app.innerHTML=`<div class="card"><span class="tag">${x[0]} · ${i+1} of 3</span><h2 style="font-size:17px">${x[1]}</h2>${x[2].map((o,k)=>`<button class="opt" onclick="qa[${i}]=${k===x[3]};q(${i+1})">${o}</button>`).join("")}</div>`}
+function r1(){const [m,s,l]=qa,n=qa.filter(Boolean).length;let r,w;
+if(n===3){r="Project Development Officer";w="You’re strong in math, science and logic, a great all-rounder to lead projects."}
+else if(m&&s){r="Research & Data Scientist";w="Numbers and scientific thinking are your strengths."}
+else if(m&&l){r="Systems Analyst";w="You pair number sense with sharp logic."}
+else if(s&&l){r="Science Research Specialist";w="You think scientifically and reason carefully."}
+else if(m){r="Statistical Data Analyst";w="You’re at home with numbers and patterns."}
+else if(s){r="Laboratory Technologist";w="Hands-on science is your thing."}
+else if(l){r="ICT Systems Developer";w="Logical, step-by-step thinking is your edge."}
+else{r="Science Communication & Outreach Assistant";w="You’ll help bring science closer to the people, and learn the technical side as you grow."}
+S.role=r;app.innerHTML=`<div class="card"><span class="tag">Your result</span><div class="big">${n}/3</div><div class="res good"><b>🎉 You can apply as: ${r}</b><p>${w}</p></div><button class="b" onclick="hold('Continue to Step 2','s2intro',2)">Next</button><button class="b g" onclick="s1()">Retake assessment</button></div>`}
+/* STEP 2 */
+const PP=[["c","Maam Caroñongan","Recruitment · Labor laws · Coaching & people management","hr"],["d","Denzel","Lab experiments · Scientific method · Research writing","sci"],["a","Andrew","Programming · Databases · Cybersecurity","ict"],["m","Maya","Statistics · Data visualization · Excel modeling","data"],["i","Inigo","Budgeting · Project planning · Stakeholder communication","pm"]];
+const RR=[["ict","ICT Systems Developer"],["pm","Project Development Officer"],["hr","HR Management Officer"],["data","Statistical Data Analyst"],["sci","Science Research Specialist"]];
+let M={},sel=null,chk=false;
+function s2intro(){M={};sel=null;chk=false;app.innerHTML=`<div class="card"><span class="tag">Step 2 · PMS</span><h2>Performance Management System Recommendation: Competency Identification and Profiling</h2><p class="sub">Match each person to the DOST role that fits their competencies. <b>Drag</b> a person to a role, or <b>tap</b> a person then tap a role.</p><div id="mt"></div></div>`;mt()}
+function mt(){const used=Object.values(M),pool=PP.filter(p=>!used.includes(p[0]));
+$("mt").innerHTML=`<div class="mg"><div><h3>People & competencies</h3>${pool.map(p=>`<div class="pc ${sel===p[0]?"sel":""}" draggable="true" ondragstart="event.dataTransfer.setData('t','${p[0]}');sel='${p[0]}'" onclick="sel=sel==='${p[0]}'?null:'${p[0]}';mt()">${AV}<div><b>${p[1]}</b><span>${p[2]}</span></div></div>`).join("")||'<p class="sub">All placed!</p>'}</div>
+<div><h3>DOST roles</h3>${RR.map(r=>{const pid=M[r[0]],p=PP.find(x=>x[0]===pid);const st=chk?(p&&p[3]===r[0]?"ok":"no"):"";return `<div class="sl ${st}" ondragover="event.preventDefault()" ondrop="event.preventDefault();place('${r[0]}',event.dataTransfer.getData('t'))" onclick="place('${r[0]}',sel)">${AV}<div><b>${r[1]}</b>${p?`<span>${p[1]}</span>`:'<span style="color:#9aa6c2">drop here</span>'}</div></div>`}).join("")}</div></div>
+${chk?res2():`<button class="b" ${Object.keys(M).length<5?"disabled":""} onclick="chk=true;mt()">Check my matches</button>`}`}
+function place(r,id){if(chk)return;if(id&&PP.find(p=>p[0]===id)){M[r]=id;sel=null}else if(M[r]){delete M[r]}mt()}
+function res2(){let n=0,wr=[];RR.forEach(r=>{const p=PP.find(x=>x[0]===M[r[0]]);if(p[3]===r[0])n++;else wr.push(`${PP.find(x=>x[3]===r[0])[1]} → ${r[1]}`)});S.match=n;
+const fb=n===5?"Perfect! Excellent profiling, ready for a promotion! 🌟":n>=3?"Good job! Your competency profiling is solid.":"Keep practicing. Review each person’s core competencies.";
+return `<div class="res ${n>=4?"good":n>=3?"":"bad"}"><b>Score: ${n}/5</b><p>${fb}</p>${wr.length?`<p><b>Correct matches you missed:</b><br>${wr.join("<br>")}</p>`:""}</div><button class="b" onclick="hold('Continue to Step 3','s3',3)">Next</button><button class="b g" onclick="s2intro()">Try again</button>`}
+/* STEP 3 */
+const A=[null,"🏝️ Siargao beach escapade","📺 K-drama release: Business Proposal 2","🎤 BLACKPINK concert","🥾 Mt. Pulag sunrise hike","📺 K-drama release: Vincenzo special","🏊 Boracay island hopping","🎤 BLACKPINK fan meet","🍜 Manila food crawl","📺 K-drama release: Goblin director’s cut","🏄 Baler surf trip","🎶 OPM music fest","🧘 Spa & wellness day","📺 K-drama release: Queen of Tears finale","🚴 Tagaytay cycling day","🎤 BLACKPINK encore night","🏖️ La Union weekend","📺 K-drama release: Extraordinary Attorney Woo S2","🎨 Art fair at BGC","🤿 Anilao diving trip","📺 K-drama release: Crash Landing on You special","🎤 BLACKPINK pop-up store","🌋 Taal viewpoint & bulalo lunch","🎬 Film fest preview","📺 K-drama release: My Demon finale","🏞️ Sagada getaway","🛍️ Christmas night market","📺 K-drama release: Hotel del Luna S2","🎆 Pre-holiday lights show",null];
+const WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function s3(){S.left=4;S.days=[];let c="";["S","M","T","W","T","F","S"].forEach(d=>c+=`<div class="dh">${d}</div>`);
+for(let d=1;d<=30;d++)c+=A[d]?`<button class="dc" id="d${d}" onclick="tg(${d})">${d}<em>${A[d].split(" ")[0]}</em></button>`:`<button class="dc off" onclick="inf(${d})">${d}<em>🎌</em></button>`;
+app.innerHTML=`<div class="card"><span class="tag">Step 3 · Total Rewards</span><h2>Total Rewards Systems: Wellness And Leave Credit Tracker</h2><p class="sub">Tap a date to use 1 leave credit for that activity. Tap again to get it back.</p><div class="top">November 2026<div>🏖️ Leave credits: <span id="lc">4</span></div></div><div class="cal">${c}</div><div id="info" class="res">Tap a date to see the activity.</div><button class="b" onclick="sum()">View leave summary</button></div>`}
+function inf(d){$("info").innerHTML=d===1?"🎌 Nov 1 (Sun): All Saints’ Day. It’s a holiday, so no leave needed!":"🎌 Nov 30 (Mon): Bonifacio Day. It’s a holiday, so no leave needed!"}
+function tg(d){const b=$("d"+d),i=S.days.indexOf(d);
+if(i>-1){S.days.splice(i,1);S.left++;b.classList.remove("on")}
+else if(S.left>0){S.days.push(d);S.left--;b.classList.add("on")}
+else{$("info").innerHTML="⚠️ No leave credits left! Tap a selected date to free one up.";$("lc").parentNode.classList.add("shake");setTimeout(()=>$("lc").parentNode.classList.remove("shake"),400);return}
+$("lc").textContent=S.left;$("info").innerHTML=`<b>Nov ${d} (${WD[(d-1)%7]})</b><br>${A[d]}`}
+function sum(){const ds=S.days.slice().sort((a,b)=>a-b);
+app.innerHTML=`<div class="card"><span class="tag">Leave summary</span><h2>your leave plan, ${S.name}</h2>${ds.length?ds.map(d=>`<div class="ck"><b>✓</b><div><b>Nov ${d} (${WD[(d-1)%7]})</b><br><span class="sub">${A[d]}</span></div></div>`).join(""):'<p class="sub">You haven’t used any leave credits yet.</p>'}<div class="res"><b>Credits used: ${ds.length} · Remaining: ${S.left}</b></div><button class="b" onclick="hold('Continue to Step 4','s4',4)">Next</button><button class="b g" onclick="s3()">Edit my leaves</button></div>`}
+/* STEP 4 */
+const C=[["💧 Drink 8 glasses of water",10],["🚶 Walk 10,000 steps",30],["🏋️ 30-minute workout",25],["🧘 Stretch or yoga session",15],["🥗 Eat a healthy lunch",10],["😴 Sleep 7–8 hours",15],["📵 1-hour digital detox",15],["💃 Join a Zumba / group exercise",25],["🧠 Mental health check-in",20],["🙏 Write a gratitude note",10]];
+function s4(){S.pts=0;app.innerHTML=`<div class="card"><span class="tag">Step 4 · Engagement</span><h2>Strategic Employee Engagement: DO Wellness Challenges</h2><div class="top">⭐ Your points<span id="pt">0</span></div><p class="sub">Tick each challenge you complete. Don’t forget to look for the Wellness Challenge cards being distributed around!</p>${C.map((c,i)=>`<label class="chl" id="c${i}"><input type="checkbox" onchange="cp(${i},this.checked)">${c[0]}<em>+${c[1]}</em></label>`).join("")}<button class="b" onclick="lb()">See leaderboard</button></div>`}
+function cp(i,on){S.pts+=on?C[i][1]:-C[i][1];$("pt").textContent=S.pts;$("c"+i).classList.toggle("on",on)}
+const RW=["FREE Anytime Fitness membership 🏋️","Fitness tumbler + gym towel set 🥤","Healthy snack gift basket 🍎","Wellness raffle entry 🎟️","Wellness raffle entry 🎟️","Participation sticker 🌟","Participation sticker 🌟"];
+function lb(){const L=[["Ate Joy",165],["Migs",140],["Carlo",120],["Bea",95],["Lorie",70],["Paolo",45],[S.name+" (you)",S.pts]].sort((a,b)=>b[1]-a[1]||(a[0].includes("you")?1:-1));
+app.innerHTML=`<div class="card"><span class="tag">Leaderboard</span><h2>DO Wellness Challenges Leaderboard 🏆</h2>${L.map((x,i)=>`<div class="lb ${x[0].includes("you")?"me":""}"><div class="rk">${i+1}</div>${AV}<div><b>${x[0]}</b><small>${RW[i]}</small></div><div class="pt">${x[1]} pts</div></div>`).join("")}<button class="b" onclick="hold('Finish my journey','fin',5)">Next</button><button class="b g" onclick="s4()">Back to challenges</button></div>`}
+function fin(){app.innerHTML=`<div class="card" style="text-align:center"><div class="big">🎓</div><h1 style="padding:0">journey complete, ${S.name}!</h1><p class="sub">Role: ${S.role}<br>PMS matching: ${S.match}/5 · Leaves used: ${S.days.length} · Wellness points: ${S.pts}</p><p>Don’t forget to grab a Wellness Challenge card! 💚</p><button class="b" onclick="showQR()">Share with a friend (QR)</button><button class="b g" onclick="go(welcome,0)">Start over</button></div>`}
+function showQR(){const q=$("qc");q.innerHTML="";let u=location.href;if(location.protocol==="file:"||!/^https?:/.test(u)){u="";try{u=localStorage.getItem("dostUrl")||""}catch(e){}if(!u){u=prompt("Paste the web link where you uploaded this app (e.g. https://yourname.github.io/dost/):")||"";if(u)try{localStorage.setItem("dostUrl",u)}catch(e){}}if(!u)return}try{new QRCode(q,{text:u,width:200,height:200})}catch(e){q.textContent="QR unavailable"}$("qm").style.display="flex"}
+go(welcome,0);
+</script></body></html>
